@@ -15,8 +15,6 @@ ENV HOME=/home/ros
 ENV PATH="/home/ros/.local/bin:${PATH}"
 # Force Python stdout and stderr streams to be unbuffered.
 ENV PYTHONUNBUFFERED=1
-# Set the LD_PRELOAD environment variable
-ENV LD_PRELOAD=/usr/lib/libdlfaker.so:/usr/lib/libvglfaker.so
 # enable all capabilities for the container
 ENV NVIDIA_DRIVER_CAPABILITIES=all
 

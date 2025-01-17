@@ -22,7 +22,4 @@ vcs import < ${WS}/src/repos/external.repos
 # The '-y' flag automatically answers "yes" to any prompts
 rosdep install -r -y -i --from-paths .
 
-# Install Python dependencies for the ultralytics_ros package
-python3 -m pip install -e detectron2
-
 echo "Setup complete."
