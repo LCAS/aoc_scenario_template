@@ -1,25 +1,34 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status and enable debug mode for verbose output
-set -e -x
+set -e -o pipefail
 
-# Update rosdep database to ensure all dependencies are up-to-date
+# Function to handle cleanup if script fails
+cleanup() {
+    echo "Error occurred during execution. Cleaning up..."
+}
+trap cleanup ERR
+
+# Update rosdep and system packages
 rosdep update
-sudo apt-get update 
+sudo apt-get update
 
-# Navigate to the src directory of the current workspace
 WS=$1
-echo "WS dir ${WS}"
-mkdir -p ${WS}/src/external_packages 
-cd ${WS}/src/external_packages 
+echo "WS dir: ${WS}"
 
-# Import repositories using vcs
+# Remove and recreate external_packages
+if [ -d "${WS}/src/external_packages" ]; then
+    echo "Removing existing external_packages directory..."
+    rm -rf "${WS}/src/external_packages"
+fi
+mkdir -p "${WS}/src/external_packages"
+cd "${WS}/src/external_packages"
+
+# Import repositories
 echo "Importing repositories with vcs..."
-vcs import < ${WS}/src/repos/external.repos 
+vcs import --force < "${WS}/src/repos/external.repos"
 
-# Install any dependencies specified in the cloned repositories' package.xml files
-# The '-r' flag makes the process recursive
-# The '-y' flag automatically answers "yes" to any prompts
+# Install dependencies
+echo "Installing dependencies..."
 rosdep install -r -y -i --from-paths .
 
 echo "Setup complete."

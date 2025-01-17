@@ -1,6 +1,6 @@
 # syntax = devthefuture/dockerfile-x
 
-ARG BASE_IMAGE=lcas.lincoln.ac.uk/lcas/ros:jammy-humble-cuda12.6-opengl
+ARG BASE_IMAGE=lcas.lincoln.ac.uk/lcas/ros:jammy-humble-cuda12.2-opengl
 ############################################################################################################
 FROM ${BASE_IMAGE} as base
 
@@ -50,5 +50,15 @@ USER $USER
 
 # include the file to configure the user's .bashrc
 INCLUDE .devcontainer/docker_include/bashrc_config.dockerfile
+
+CMD ["/bin/bash"]
+
+FROM final as full_image
+
+
+COPY .devcontainer/scripts/post-create.sh ${COLCON_WS}/src/post-create.sh
+# Make the script executable and run it, then remove it
+RUN /bin/bash -c '${COLCON_WS}/src/post-create.sh' && \
+    sudo rm -f ${COLCON_WS}/src/post-create.sh 
 
 CMD ["/bin/bash"]

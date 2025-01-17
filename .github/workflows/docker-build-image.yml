@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - base_image: lcas.lincoln.ac.uk/lcas/ros:jammy-humble-cuda12.6-opengl
+          - base_image: lcas.lincoln.ac.uk/lcas/ros:jammy-humble-cuda12.2-opengl
             ros_distro: humble
             push_image: lcas.lincoln.ac.uk/lcas/aoc_scenario_template
   

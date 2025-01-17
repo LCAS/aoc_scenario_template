@@ -18,6 +18,8 @@ ENV PYTHONUNBUFFERED=1
 # enable all capabilities for the container
 ENV NVIDIA_DRIVER_CAPABILITIES=all
 
+ENV LD_PRELOAD=""
+
 # Add the current user to the dialout, video, and tty groups.
 # This grants the user permissions to access serial ports, video devices, and terminal devices respectively.
 RUN usermod -a -G dialout $USER && \
