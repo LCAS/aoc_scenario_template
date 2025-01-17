@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e  # Exit immediately if a command exits with a non-zero status
+set -e -x  # Exit immediately if a command exits with a non-zero status
 
 # Function to add a configuration line to .bashrc if it doesn't already exist
 add_config_if_not_exist() {
