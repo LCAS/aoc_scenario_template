@@ -30,7 +30,7 @@ def generate_launch_description():
 
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(hunter_pltf_dir, 'launch', 'launch_sim.launch.py')),
-            launch_arguments={'use_sim_time': use_sim_time, 'x_pose': '0.0', 'y_pose': '0.0', 'livox': 'False'}.items(),
+            launch_arguments={'use_sim_time': use_sim_time, 'x_pose': '0.0', 'y_pose': '0.0'}.items(),
         ),
         rviz,
     ])
