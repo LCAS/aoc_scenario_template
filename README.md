@@ -14,3 +14,5 @@ To get started with this scenario, follow these steps:
     ```bash
     ros2 launch scenario_bringup bringup.launch.py
     ```
+
+![image](https://github.com/user-attachments/assets/9a034ec5-72de-432a-9bc1-40bb208f2aa8)
